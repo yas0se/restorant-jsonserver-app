@@ -1,22 +1,28 @@
 {
-    "articles": [
-        {
-            "id": 1,
-            "titre": "pizza",
-            "description": "pizza pizza pizza",
-            "categorie": "diner"
-        },
-        {
-            "id": 2,
-            "titre": "tajin",
-            "description": "tajin tajin tajin",
-            "categorie": "diner"
-        },
-        {
-            "id": 3,
-            "titre": "tea",
-            "description": "tea tea tea",
-            "categorie": "boisson"
-        }
-    ]
+  "articles": [
+    {
+      "id": 1,
+      "titre": "pizza",
+      "description": "pizza pizza pizza",
+      "categorie": "diner"
+    },
+    {
+      "id": 2,
+      "titre": "tajin",
+      "description": "tajin tajin tajin",
+      "categorie": "diner"
+    },
+    {
+      "id": 3,
+      "titre": "tea",
+      "description": "tea tea tea",
+      "categorie": "boisson"
+    },
+    {
+      "id": "8912",
+      "titre": "awalan",
+      "description": "awalanawalanawalan",
+      "categorie": "dinner"
+    }
+  ]
 }
