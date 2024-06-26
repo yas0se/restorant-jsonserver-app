@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from './components/home';
 import Articles from './components/article';
 import NewArticle from './components/newArticle';
+import EditArticle from './components/editArticle';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -28,6 +29,7 @@ function App() {
         <Route path="/Home" element={<Home />} />
         <Route path="/Articles" element={<Articles />} />
         <Route path="/newArticle" element={<NewArticle />} />
+        <Route path="/editArticle/:id" element={<EditArticle />} />
       </Routes>
     </BrowserRouter>
   );

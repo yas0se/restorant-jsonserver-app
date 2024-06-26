@@ -1,24 +1,39 @@
-import React, { useState } from "react";
-import { saveArticle } from "../Repository/articlesRepository";
-export default function NewArticle() {
+import React, { useState, useEffect } from "react";
+import { updateArticle, getArticleById } from "../Repository/articlesRepository";
+import { useParams } from "react-router-dom";
+export default function EditArticle() {
+  const { id } = useParams();
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
   const [categorie, setCategorie] = useState("");
-  const handleSaveArticle = (event) => {
+  useEffect(() => {
+    if (id) {
+      handleGetArticleById(id);
+    }
+  }, [id]);
+  const handleUpdateArticle = (event) => {
     event.preventDefault();
-    const article = { titre, description, categorie };
-    saveArticle(article).then((resp) => {
+    const article = { id, titre, description, categorie };
+    updateArticle(article).then((resp) => {
       alert(JSON.stringify(resp.data));
+    });
+  };
+
+  const handleGetArticleById = (id) => {
+    getArticleById(id).then((resp) => {
+      setTitre(resp.data.titre);
+      setDescription(resp.data.description);
+      setCategorie(resp.data.categorie);
     });
   };
   return (
     <div className="p-3">
       <div className="card">
         <div className="card-body">
-          <form onSubmit={handleSaveArticle} method="post">
+          <form onSubmit={handleUpdateArticle} method="post">
             <div className="mb-3">
               <label htmlFor="titre" className="form-label">
-              Titre
+                Titre
               </label>
               <input
                 id="titre"
@@ -30,7 +45,7 @@ export default function NewArticle() {
             </div>
             <div className="mb-3">
               <label htmlFor="description" className="form-label">
-              Description
+                Description
               </label>
               <input
                 id="description"

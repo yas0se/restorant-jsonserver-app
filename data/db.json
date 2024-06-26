@@ -1,28 +1,46 @@
 {
   "articles": [
     {
-      "id": 1,
+      "id": "1",
       "titre": "pizza",
       "description": "pizza pizza pizza",
-      "categorie": "diner"
+      "categorie": "Dinner"
     },
     {
-      "id": 2,
+      "id": "2",
       "titre": "tajin",
       "description": "tajin tajin tajin",
-      "categorie": "diner"
+      "categorie": "Lunch"
     },
     {
-      "id": 3,
+      "id": "3",
       "titre": "tea",
       "description": "tea tea tea",
-      "categorie": "boisson"
+      "categorie": "Boissan"
     },
     {
-      "id": "8912",
-      "titre": "awalan",
-      "description": "awalanawalanawalan",
-      "categorie": "dinner"
+      "id": "065f",
+      "titre": "Coffee ",
+      "description": "9ahwa 9as7a",
+      "categorie": "Boissan"
+    },
+    {
+      "id": "9ae1",
+      "titre": "Omlet",
+      "description": "Bayd beldi + Fromage",
+      "categorie": "Breakfast"
+    },
+    {
+      "id": "952c",
+      "titre": "Spaghetti",
+      "description": "+ kefta + maticha",
+      "categorie": "Dinner"
+    },
+    {
+      "id": "b7b9",
+      "titre": "Koskos",
+      "description": "7 5dari",
+      "categorie": "Lunch"
     }
   ]
 }

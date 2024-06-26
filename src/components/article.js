@@ -6,10 +6,14 @@ import {
   faSearch,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
+
 export default function Articles() {
   const [query, setQuery] = useState("");
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleGetArticles();
@@ -87,6 +91,14 @@ export default function Articles() {
                           className="btn btn-outline-danger"
                         >
                           <FontAwesomeIcon icon={faTrash}></FontAwesomeIcon>
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => navigate(`/editArticle/${article.id}`)}
+                          className="btn btn-outline-success"
+                        >
+                          <FontAwesomeIcon icon={faEdit}></FontAwesomeIcon>
                         </button>
                       </td>
                     </tr>
