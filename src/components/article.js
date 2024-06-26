@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Articles() {
   const [query, setQuery] = useState("");
+  const [query2, setQuery2] = useState("");
   const [articles, setArticles] = useState([]);
   const [filteredArticles, setFilteredArticles] = useState([]);
 
@@ -18,6 +19,10 @@ export default function Articles() {
   useEffect(() => {
     handleGetArticles();
   }, []);
+
+  useEffect(() => {
+    handleSearchCategorie();
+  }, [query2]);
 
   const handleGetArticles = () => {
     getArticles().then((resp) => {
@@ -36,12 +41,18 @@ export default function Articles() {
   };
 
   const handleSearch = (event) => {
-    // event.preventDefault();
     event.preventDefault();
-    const filtered = articles.filter(article => 
+    const filtered = articles.filter(article =>
       article.titre.toLowerCase().includes(query.toLowerCase()) ||
       article.description.toLowerCase().includes(query.toLowerCase()) ||
       article.categorie.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredArticles(filtered);
+  }
+
+  const handleSearchCategorie = (event) => {
+    const filtered = articles.filter(article =>
+      article.categorie.toLowerCase().includes(query2.toLowerCase())
     );
     setFilteredArticles(filtered);
   }
@@ -68,6 +79,20 @@ export default function Articles() {
                         <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
                       </button>
                     </div>
+                  </form>
+                </div>
+                <div className="card-body">
+                  <form onChange={handleSearchCategorie} className="row">
+                    <select id="categorie"
+                      className="form-select"
+                      aria-label="Default select example"
+                      onChange={(e) => setQuery2(e.target.value)}>
+                      <option value="">All Categorie</option>
+                      <option value="Breakfast">Breakfast</option>
+                      <option value="Lunch">Lunch</option>
+                      <option value="Dinner">Dinner</option>
+                      <option value="Boissan">Boissan</option>
+                    </select>
                   </form>
                 </div>
               </div>
