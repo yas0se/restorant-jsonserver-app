@@ -2,6 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Home from './components/home';
 import Articles from './components/article';
+import NewArticle from './components/newArticle';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 
@@ -17,12 +18,16 @@ function App() {
                 <li>
                   <Link className="btn btn-outline-info ms-1" to={"/Articles"}>Articles</Link>
                 </li>
+                <li>
+                  <Link className="btn btn-outline-info ms-1" to={"/newArticle"}>New Articles</Link>
+                </li>
             </ul>
           </div>
         </nav>
       <Routes>
         <Route path="/Home" element={<Home />} />
         <Route path="/Articles" element={<Articles />} />
+        <Route path="/newArticle" element={<NewArticle />} />
       </Routes>
     </BrowserRouter>
   );
