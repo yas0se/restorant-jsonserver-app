@@ -1,46 +1,53 @@
 {
   "articles": [
     {
-      "id": "1",
       "titre": "pizza",
       "description": "pizza pizza pizza",
-      "categorie": "Dinner"
+      "categorie": "Dinner",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719485175/csyf77okiqo3iypspt41.jpg",
+      "id": "1"
     },
     {
-      "id": "2",
       "titre": "tajin",
       "description": "tajin tajin tajin",
-      "categorie": "Lunch"
+      "categorie": "Lunch",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719485462/egpjbet3ucissyfmxh7o.jpg",
+      "id": "2"
     },
     {
-      "id": "3",
       "titre": "tea",
       "description": "tea tea tea",
-      "categorie": "Boissan"
+      "categorie": "Boissan",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719485506/qzh920oyaasew7myc1yg.jpg",
+      "id": "3"
     },
     {
-      "id": "065f",
       "titre": "Coffee ",
-      "description": "9ahwa 9as7a",
-      "categorie": "Boissan"
+      "description": "9ahwa 9as7a mmm",
+      "categorie": "Boissan",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719486433/hmczjp5v5pplmg1qpxfp.jpg",
+      "id": "065f"
     },
     {
-      "id": "9ae1",
       "titre": "Omlet",
       "description": "Bayd beldi + Fromage",
-      "categorie": "Breakfast"
+      "categorie": "Breakfast",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719485608/gelalgfyvgn05ij7oqxh.jpg",
+      "id": "9ae1"
     },
     {
-      "id": "952c",
       "titre": "Spaghetti",
       "description": "+ kefta + maticha",
-      "categorie": "Dinner"
+      "categorie": "Dinner",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719485658/yadkgcunqizqyf3vj0jq.jpg",
+      "id": "952c"
     },
     {
-      "id": "b7b9",
       "titre": "Koskos",
       "description": "7 5dari",
-      "categorie": "Lunch"
+      "categorie": "Lunch",
+      "imageUrl": "https://res.cloudinary.com/du1w6cmsb/image/upload/v1719485103/u6xl4e3qqerfd4rp89vl.jpg",
+      "id": "b7b9"
     }
   ]
 }

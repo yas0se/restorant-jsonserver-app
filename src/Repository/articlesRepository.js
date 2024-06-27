@@ -12,8 +12,8 @@ export const getArticleById = (id) => {
 export const saveArticle = (article) => {
   return api.post("/articles", article);
 };
-export const updateArticle = (article) => {
-  return api.put(`/articles/${article.id}`, article);
+export const updateArticle = (id, article) => {
+  return api.put(`/articles/${id}`, article);
 };
 export const deleteArticle = (article) => {
   return api.delete(`/articles/${article.id}`);
