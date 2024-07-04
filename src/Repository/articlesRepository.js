@@ -15,6 +15,6 @@ export const saveArticle = (article) => {
 export const updateArticle = (id, article) => {
   return api.put(`/articles/${id}`, article);
 };
-export const deleteArticle = (article) => {
-  return api.delete(`/articles/${article.id}`);
+export const deleteArticle = (id) => {
+  return api.delete(`/articles/${id}`);
 };

@@ -1,67 +1,43 @@
+// src/components/Home.js
 import React, { useState, useEffect } from 'react';
-import { getArticles, deleteArticle } from '../Repository/articlesRepository';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchArticles, removeArticle, searchArticles, filterByCategory } from '../slice/articleSlice';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faSearch,
-  faTrash,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faSearch, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import '../Articles.css';
 
 export default function Home() {
   const [query, setQuery] = useState("");
   const [query2, setQuery2] = useState("");
-  const [articles, setArticles] = useState([]);
-  const [filteredArticles, setFilteredArticles] = useState([]);
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    handleGetArticles();
-  }, []);
+  const articles = useSelector((state) => state.articles.filteredItems);
+  const loading = useSelector((state) => state.articles.loading);
+  const error = useSelector((state) => state.articles.error);
 
   useEffect(() => {
-    handleSearchCategorie();
-  }, [query2]);
+    dispatch(fetchArticles());
+  }, [dispatch]);
 
-  const handleGetArticles = () => {
-    getArticles().then((resp) => {
-      setArticles(resp.data);
-      setFilteredArticles(resp.data);
-    })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
-  const handleDeleteArticle = (id) => {
-    deleteArticle(id).then((resp) => {
-      handleGetArticles();
-    });
-  };
+  useEffect(() => {
+    dispatch(filterByCategory(query2));
+  }, [dispatch, query2]);
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const filtered = articles.filter(article =>
-      article.titre.toLowerCase().includes(query.toLowerCase()) ||
-      article.description.toLowerCase().includes(query.toLowerCase()) ||
-      article.categorie.toLowerCase().includes(query.toLowerCase())
-    );
-    setFilteredArticles(filtered);
-  }
+    dispatch(searchArticles(query));
+  };
 
-  const handleSearchCategorie = (event) => {
-    const filtered = articles.filter(article =>
-      article.categorie.toLowerCase().includes(query2.toLowerCase())
-    );
-    setFilteredArticles(filtered);
-  }
+  const handleDeleteArticle = (id) => {
+    dispatch(removeArticle(id));
+  };
 
   return (
     <div className="p-1 m-2">
       <div className="row">
-        <div >
+        <div>
           <div className="card">
             <div className="card-body">
               <div className="card">
@@ -83,7 +59,7 @@ export default function Home() {
                   </form>
                 </div>
                 <div className="card-body">
-                  <form onChange={handleSearchCategorie} className="row">
+                  <form className="row">
                     <div className="col-auto">
                       <select id="categorie"
                         className="form-select"
@@ -102,8 +78,10 @@ export default function Home() {
               <br />
               <h3>Derniers Articles</h3>
               <div className="p-1 m-1">
+                {loading && <p>Loading...</p>}
+                {error && <p>Error: {error}</p>}
                 <div className="row">
-                  {filteredArticles.slice().reverse().map(article => (
+                  {articles.slice().reverse().map(article => (
                     <div className="col-md-4" key={article.id}>
                       <div className="card article-card">
                         <img className="card-img-top article-card-img" src={article.imageUrl || 'default-image-url.jpg'} alt="Card image cap" />
@@ -111,7 +89,7 @@ export default function Home() {
                           <h5 className="card-title">{article.titre}</h5>
                           <h6 className="card-subtitle mb-2 text-muted">{article.categorie}</h6>
                           <p className="card-text">{article.description}</p>
-                          <a href="#" onClick={() => handleDeleteArticle(article)} className="card-link text-danger">
+                          <a href="#" onClick={() => handleDeleteArticle(article.id)} className="card-link text-danger">
                             <FontAwesomeIcon icon={faTrash} /> Supprimer
                           </a>
                           <a href="#" onClick={() => navigate(`/editArticle/${article.id}`)} className="card-link text-success">

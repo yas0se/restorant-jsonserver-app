@@ -1,14 +1,14 @@
+// src/components/NewArticle.js
 import React, { useState } from "react";
-import { saveArticle } from "../Repository/articlesRepository";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { createArticle } from "../slice/articleSlice";
+
 export default function NewArticle() {
   const [titre, setTitre] = useState("");
   const [description, setDescription] = useState("");
   const [categorie, setCategorie] = useState("");
   const [image, setImage] = useState(null);
-  const cloud_name = "du1w6cmsb";
-  const preset_key = "aauez9ty";
-  
+  const dispatch = useDispatch();
 
   const handleImageChange = (event) => {
     setImage(event.target.files[0]);
@@ -17,32 +17,12 @@ export default function NewArticle() {
   const handleSaveArticle = async (event) => {
     event.preventDefault();
     try {
-      if (image) {
-        const formData = new FormData();
-        formData.append("file", image);
-        formData.append("upload_preset", preset_key);
-
-        const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`, formData);
-        console.log(res.data);
-
-    
-    const article = {
-      titre,
-      description,
-      categorie,
-      imageUrl: res.data.secure_url,
-    };
-
-    const response = await saveArticle(article);
-    alert(JSON.stringify(response.data));
-  } else {
-    alert("Please select an image to upload.");
-  }
-} catch (error) {
-  console.error(error);
-  alert("An error occurred while saving the article.");
-}
-
+      dispatch(createArticle({ titre, description, categorie, image }));
+      alert("Article created successfully!");
+    } catch (error) {
+      console.error(error);
+      alert("An error occurred while saving the article.");
+    }
   };
 
   return (
@@ -82,7 +62,7 @@ export default function NewArticle() {
                 aria-label="Default select example"
                 value={categorie}
                 onChange={(e) => setCategorie(e.target.value)}>
-                <option value="" disabled selected>Categorie</option>
+                <option value="" disabled>Categorie</option>
                 <option value="Breakfast">Breakfast</option>
                 <option value="Lunch">Lunch</option>
                 <option value="Dinner">Dinner</option>
